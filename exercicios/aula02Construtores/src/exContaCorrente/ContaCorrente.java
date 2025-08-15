@@ -33,7 +33,7 @@ public class ContaCorrente {
 
         if(saque < saldo && (saque - saldo) >= limiteChequeEspecial){
             saldo -= saque;
-            limiteChequeEspecial - saque - saldo;
+            limiteChequeEspecial = saque - saldo;
         }
     }
 
