@@ -9,87 +9,103 @@ package exContaCorrente;
 // cheque especial. Faça um programa para testar essa classe.
 
 public class ContaCorrente {
+    //definição de atributos
     private int idConta;
     private double saldo;
     private double limiteChequeEspecial;
     private boolean estadoChequeEspecial;
-    
+    private double auxLimiteChequeEspecial;
 
-    //constructor
+    //metodo construtor
     public ContaCorrente(int idConta, double saldo, double limiteChequeEspecial) {
         this.idConta = idConta;
         this.saldo = saldo;
         this.limiteChequeEspecial = limiteChequeEspecial;  
+        this.auxLimiteChequeEspecial = limiteChequeEspecial;
     }
 
     //metodo para sacar dinheiro
     public void sacar(double saque){
-        if(saque >= saldo && saque > 0){
+        //verifica se há saldo e se é um numero inteiro maior que 0
+        if(saque <= saldo && saque > 0){
             saldo -= saque;
             System.out.println("Saque de R$" + saque + " feito com sucesso!");
-        }else{
-            System.out.println("Saldo Insuficiente!");
         }
-
-        if(saque < saldo && (saque - saldo) >= limiteChequeEspecial){
+        //verifica se saque é maior que o saldo e se há limite de cheque especial
+        else if(saque > saldo && (saque - saldo) <= limiteChequeEspecial){
+            limiteChequeEspecial -= (saque - saldo);
             saldo -= saque;
-            limiteChequeEspecial = saque - saldo;
+            estadoChequeEspecial = true;
+            System.out.println("Saque de R$" + saque + " feito com sucesso!");
+            System.out.println("Você entrou no limine do cheque Especial!");
+        }
+        else{
+            System.out.println("Saldo insuficiente!");
         }
     }
 
+    //metodo para depositar dinheiro
     public void depositar(double deposito){
-        saldo += deposito;
-        System.out.println("Deposito de R$" + deposito + " feito com sucesso!");
+        //verifica se o cheque especial está sendo usado
+        if(estadoChequeEspecial == true){
+           saldo += deposito;
+           //compara o deposito com o valor do cheque especial e reativa-o
+           if(deposito >= auxLimiteChequeEspecial){
+            limiteChequeEspecial = auxLimiteChequeEspecial;
+            estadoChequeEspecial = false;
+            System.out.println("Deposito de R$" + deposito + " feito com sucesso, cheque especial reativado!");
+           } 
+        
+        }else{
+            saldo += deposito;
+            System.out.println("Deposito de R$" + deposito + " feito com sucesso!");
+        }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //metodo para verificar as informações da conta
+    public void informacoesConta(){
+        System.out.println("------------Informações da cota:------------");
+        System.out.println("Id da Conta: #" + idConta);
+        System.out.println("Saldo da conta: R$" + saldo);
+        System.out.println("Limite do cheque especial: R$" + auxLimiteChequeEspecial);
+        if (estadoChequeEspecial == true){
+            System.out.println("Está utilizando cheque especial: Sim");
+        } else{
+             System.out.println("Está utilizando cheque especial: Não");
+        }
+    }
 
     //getters and setters
     public int getIdConta() {
         return idConta;
     }
 
-
     public void setIdConta(int idConta) {
         this.idConta = idConta;
     }
-
 
     public double getSaldo() {
         return saldo;
     }
 
-
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
 
     public double getLimiteChequeEspecial() {
         return limiteChequeEspecial;
     }
 
-
     public void setLimiteChequeEspecial(double limiteChequeEspecial) {
         this.limiteChequeEspecial = limiteChequeEspecial;
     }
 
-    
-    
+    public boolean isEstadoChequeEspecial() {
+        return estadoChequeEspecial;
+    }
 
-    
+    public void setEstadoChequeEspecial(boolean estadoChequeEspecial) {
+        this.estadoChequeEspecial = estadoChequeEspecial;
+    }
 
 }
