@@ -25,22 +25,21 @@ public class ContaCorrente {
     }
 
     //metodo para sacar dinheiro
-    public void sacar(double saque){
-        //verifica se há saldo e se é um numero inteiro maior que 0
+    public String sacar(double saque){
+        //verifica se há saldo e se é um numero maior que 0
         if(saque <= saldo && saque > 0){
             saldo -= saque;
-            System.out.println("Saque de R$" + saque + " feito com sucesso!");
+            return "Saque de R$" + saque + " feito com sucesso!";
         }
         //verifica se saque é maior que o saldo e se há limite de cheque especial
         else if(saque > saldo && (saque - saldo) <= limiteChequeEspecial){
             limiteChequeEspecial -= (saque - saldo);
             saldo -= saque;
             estadoChequeEspecial = true;
-            System.out.println("Saque de R$" + saque + " feito com sucesso!");
-            System.out.println("Você entrou no limine do cheque Especial!");
+            return "Saque de R$" + saque + " feito com sucesso, Você entrou no limine do cheque Especial!";
         }
         else{
-            System.out.println("Saldo insuficiente!");
+            return "Saldo insuficiente!";
         }
     }
 
