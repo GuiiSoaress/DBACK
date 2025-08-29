@@ -1,5 +1,6 @@
 public class Voo {
-    
+
+    //atributos da classe
     private int numeroVoo;
     private String origemVoo;
     private String destinoVoo;
@@ -7,6 +8,7 @@ public class Voo {
     private String portaoEmbarque;
 
 
+    //construtor completo
     public Voo(int numeroVoo, String origemVoo, String destinoVoo, String companhiaVoo, String portaoEmbarque) {
         this.numeroVoo = numeroVoo;
         this.origemVoo = origemVoo;
@@ -14,10 +16,13 @@ public class Voo {
         this.companhiaVoo = companhiaVoo;
         this.portaoEmbarque = portaoEmbarque;
     }
-    
+
+    //construtor vazio
     public Voo() {
     }
 
+
+    //getters and setters
     public int getNumeroVoo() {
         return numeroVoo;
     }
