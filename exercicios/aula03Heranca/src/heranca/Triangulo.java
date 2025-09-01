@@ -1,14 +1,26 @@
 package heranca;
 
-public class Triangulo extends Figura2D {
-    
-    public Triangulo(double base, double altura) {
+public class Triangulo extends Figura2D {   
+    //Atributes
+    private String tipo; // Isoceles, Escaleno ou equilatero
+
+
+    //Constructors
+    public Triangulo(double base, double altura, String tipo) {
         super(base, altura);
-        //TODO Auto-generated constructor stub
+        this.tipo = tipo;
     }
 
-    private String tipo;
+    //getters and settes
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-    
-    
+    //methods
+    public double calculoArea(){ // retorna a área do triangulo
+        return (getBase() * getAltura()) / 2;
+    } 
 }

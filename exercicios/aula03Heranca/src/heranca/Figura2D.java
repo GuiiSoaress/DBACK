@@ -5,6 +5,11 @@ public class Figura2D {
     private double base;
     private double altura;
     
+    public Figura2D(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
     //Getters and Setters
     public double getBase() {
         return base;
