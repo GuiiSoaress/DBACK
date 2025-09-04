@@ -1,4 +1,4 @@
-package heranca;
+package exTriangulo;
 
 public class testeTriangulo {
     public static void main(String[] args) {

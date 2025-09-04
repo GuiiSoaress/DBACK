@@ -1,4 +1,4 @@
-package heranca;
+package exTriangulo;
 
 public class Triangulo extends Figura2D {   
     //Atributes
